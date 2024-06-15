@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME AISATINO</title>
+    <style>
+        body {
+            background-image: url('aisat02.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 50%;
+            max-width: 450px;
+        }
+        h1, h2, p {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 0px;
+            text-align: left;
+        }
+        ul {
+            text-align: left;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Information</h1>
+        <div id="studentInfo"></div>
+
+        <h2>Subjects and Grades</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>SUBJECT</th>
+                    <th>GRADE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>CC101</td><td></td></tr>
+                <tr><td>CC102</td><td></td></tr>
+                <tr><td>FIL 1</td><td></td></tr>
+                <tr><td>MMW</td><td></td></tr>
+                <tr><td>AA</td><td></td></tr>
+                <tr><td>STS</td><td></td></tr>
+                <tr><td>NSTP 1</td><td></td></tr>
+                <tr><td>PE 1</td><td></td></tr>
+                <tr><td>PL101</td><td></td></tr>
+            </tbody>
+        </table>
+
+        <p>Grading System:</p>
+        <ul>
+            <li>1.00 is equivalent to 96-100</li>
+            <li>1.25 is equivalent to 94-95</li>
+            <li>1.50 is equivalent to 92-93</li>
+            <li>2.50 is equivalent to 80-83</li>
+            <li>2.75 is equivalent to 78-79</li>
+            <li>3.00 is equivalent to 75-77</li>
+            <li>5.00 is FAILED</li>
+            <li>INC is for INCOMPLETE</li>
+            <li>DR is for DROPPED</li>
+        </ul>
+
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        function loadStudentInfo() {
+            const studentInfo = JSON.parse(localStorage.getItem('studentInfo'));
+            if (studentInfo) {
+                document.getElementById('studentInfo').innerHTML = `
+                    <p>Reference Number: ${studentInfo.referenceNumber}</p>
+                    <p>Name: ${studentInfo.ln}, ${studentInfo.fn} ${studentInfo.mi}</p>
+                    <p>Birthday: ${studentInfo.birthday}</p>
+                    <p>Age: ${studentInfo.age}</p>
+                    <p>Address: ${studentInfo.address}</p>
+                    <p>Senior High School Graduated Address: ${studentInfo.shs_address}</p>
+                    <p>Course Enrolling: ${studentInfo.course}</p>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('studentInfo');
+            window.location.href = 'index.html';
+        }
+
+        window.onload = loadStudentInfo;
+    </script>
+</body>
+</html>
